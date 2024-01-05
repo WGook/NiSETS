@@ -1,0 +1,79 @@
+system:
+    validation_step: 5000
+    save_ckpt: 20000
+    seed: 44
+    monitor:
+        ckpt: '.'
+        monitor:
+        mode: 'max'
+        save_top_k: 500
+log:
+    project: '[E2ETTS]'
+    name: 'Baseline'
+
+e2etts:
+    h_diffusion:
+        n_feats: 400
+        n_spks: 
+        spk_emb_dim:
+        beta_min: 0.05
+        beta_max: 20
+        pe_scale: 1000
+    h_TextEnc:
+        n_feats: 80
+        n_channels: 192
+        filter_channels: 768
+        filter_channels_dp: 256
+        n_heads: 2
+        n_layers: 6
+        kernel_size: 3
+        p_dropout: 0.1
+        window_size: 4
+        spk_emb_dim: 64
+        n_spks: 1
+    h_Denoise_fn:
+        dim: 64
+        dim_mults: [1, 2, 4]
+        groups: 8
+        n_spks: 1
+        spk_emb_dim: 64
+        n_feats: 80
+        pe_scale: 1000
+    h_Generator: 
+        resblock_kernel_sizes: [3,7,11]
+        upsample_rates: [8,8,2,2]
+        upsample_initial_channel: 512
+        resblock: '1'
+        upsample_kernel_sizes: [16,16,4,4]
+        resblock_dilation_sizes: [[1,3,5], [1,3,5], [1,3,5]]
+
+variational_diffusion:
+    num_sample_steps: 1000
+    loss_type: 'l2'
+    noise_schedule: 'linear'
+    learned_schedule_net_hidden_dim: 1024
+
+
+training:
+    batch_size: 16
+    batch_size_val: 1
+    train_num_steps: 500000
+    weak_split: 0.9
+    num_workers: 8
+    learning_rate1: 0.0001
+    learning_rate2: 0.0002
+    lr_decay1: 1
+    lr_decay2: 0.999995
+    beta1: 0.8
+    beta2: 0.99
+    weight_decay: 0.0001
+
+feats:
+    n_fft: 1024
+    num_mels: 80
+    sampling_rate: 22050
+    hop_size: 256
+    win_size: 1024
+    fmin: 0
+    fmax: 8000
+    center: False
