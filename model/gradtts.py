@@ -11,7 +11,7 @@ from model.diffusion import Diffusion
 from model.commons import sequence_mask, generate_path, fix_len_compatibility
 from model.hifigan import Generator
 from model.unet import UNet
-from data_util3.text.symbols import symbols
+from data_util.text.symbols import symbols
 
 nsymbols = len(symbols)+1+1 # padding & inter.
 

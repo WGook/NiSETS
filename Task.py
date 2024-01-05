@@ -16,7 +16,7 @@ import wandb
 import yaml
 import os
 
-from data_util3.dset import LJSpeech
+from data_util.dset import LJSpeech
 from torch.utils.data import DataLoader
 
 #=======
@@ -26,7 +26,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 #=======
 from env import AttrDict
 import torch.nn.functional as F
-from data_util3.meldataset import spectral_normalize_torch, mel_spectrogram
+from data_util.meldataset import spectral_normalize_torch, mel_spectrogram
 from model.commons import clip_grad_value_, duration_loss, mle_loss, contrastive
 
 with open('./config.yaml') as f:
