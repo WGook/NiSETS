@@ -61,7 +61,7 @@ class Task(ExperimentSetup):
     ##################  Dataloader  ###################
     ###################################################
     def train_dataloader(self):
-        dset = LJSpeech()
+        dset = LJSpeech(prtpath = conf['dataset']['prtpath'], metafile = conf['dataset']['metafile_train'])
         sampler = DistributedSampler(dset)
         dl = DataLoader(
             dset,
@@ -76,7 +76,7 @@ class Task(ExperimentSetup):
         return self.cycle(dl)
 
     def val_dataloader(self):
-        dset = LJSpeech(segment_size=0, valid = True, metafile = 'valid_.csv')
+        dset = LJSpeech(segment_size=0, valid = True, metafile = conf['dataset']['metafile_valid'])
         vl = DataLoader(
                         dset,
                         batch_size=conf['training']['batch_size_val'],
@@ -135,7 +135,6 @@ class Task(ExperimentSetup):
 
                 loss_ddpm = out_ddpm_loss
                 loss_dur = duration_loss(*out_dur_loss, phone_lens)
-                # loss_prior = mle_loss(*out_prior_loss)
                 loss_prior = out_prior_loss
 
                 weight1 = 1

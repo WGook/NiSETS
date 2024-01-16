@@ -9,11 +9,6 @@ from env import AttrDict
 import json
 with open('./config.yaml') as f:
     conf = yaml.load(f, Loader=yaml.FullLoader)
-with open('./config_v1.json') as f:
-    data = f.read()
-json_config = json.loads(data)
-h = AttrDict(json_config)
-from time import time
 
 import torch
 from glob import glob
@@ -21,10 +16,9 @@ from glob import glob
 # import wandb
 from model.gradtts import E2ETTS
 
-from data_util3.dset import LJSpeech
+from data_util.dset import LJSpeech
 from torch.utils.data import DataLoader
 
-import matplotlib.pyplot as plt
 import torchaudio
 from tqdm import tqdm
 

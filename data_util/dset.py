@@ -1,5 +1,5 @@
 from .meldataset import mel_spectrogram
-from .text import cleaned_text_to_sequence
+from .text import cleaned_text_to_sequence, cleaners
 from .text.symbols import symbols
 
 import os
@@ -11,12 +11,16 @@ import torch
 import random
 import h5py
 
+def load_filepaths_and_text(filename, split="|"):
+    with open(filename, encoding='utf-8') as f:
+        filepaths_and_text = [line.strip().split(split) for line in f]
+    return filepaths_and_text
+
+
 class LJSpeech(Dataset):
-    def __init__(self, prtpath = '/home/gook/Datasets/LJSpeech-1.1', metafile = 'train_.csv', sort=False, drop_last=False, valid = False, segment_size = 0):
+    def __init__(self, prtpath = '/home/gook/Datasets/LJSpeech-1.1', metafile = '/home/gook/Local/E2ETTS/NiSETS/data_util/train.txt', sort=False, drop_last=False, valid = False, segment_size = 0):
         self.prtpath = os.path.join(prtpath, 'wavs')
-        metapath = os.path.join(prtpath, 'meta', metafile)
-        self.metadata = np.loadtxt(metapath, dtype = str, delimiter='\t')
-        self.h5path = '/home/gook/Datasets/LJSpeech-1.1/trainp.hdf5'
+        self.metadata = load_filepaths_and_text(metafile)
         self.segment_size = segment_size
         self.cleaners = ["english_cleaners2"]
         self.add_blank = True
@@ -31,21 +35,16 @@ class LJSpeech(Dataset):
                                         center=False,
                                         normalized=False
                                         )
-        self.ds = self.get_dataset()
+
     def __len__(self):
         if self.valid:
             return 1
         else:
             return len(self.metadata)
 
-    def get_dataset(self):
-        f = h5py.File(self.h5path, 'r')
-        return f
-
     def __getitem__(self, idx):
-        basename, _, _, _ = self.metadata[idx]
-        wav = torch.Tensor(self.ds['wavs'][basename])
-        phonemes = self.ds['texts'][basename][0].decode()
+        basename, phonemes = self.metadata[idx]
+        wav, sr = torchaudio.load(os.path.join(self.prtpath, basename))
         wav = wav.mean(0, keepdims = True) # wav.shape: batch, 1, samples
 
         text_norm = cleaned_text_to_sequence(phonemes)
