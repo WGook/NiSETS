@@ -45,7 +45,9 @@ cd model/monotonic_align; python setup.py build_ext --inplace; cd ../..
     > Dataset path
 
     `dataset.prtpath`: Directory of LJSpeech dataset
+
     `dataset.metafile_train`: Directory of metadata for training (It's provided in `./data_util/train.txt`)
+    
     `dataset.metafile_valid`: Directory of metadata for training (It's provided in `./data_util/valid.txt`)
 
 2. Training
