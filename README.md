@@ -14,4 +14,11 @@ Also, the non-iterative sampling can generate speech faster than other end-to-en
 Demo page: Will be updated soon
 
 ## Usage
+### 1. Installation
+Python==3.9.12
 
+<pre>
+<code>
+pip install -r requirements.txt
+</code>
+</pre>
