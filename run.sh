@@ -1,1 +1,1 @@
-OMP_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=0 torchrun --nproc_per_node=1 main.py -a false -test true -fsdp false
+OMP_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=3 torchrun --nproc_per_node=1 --master_port 29800 main.py -a false -test true -fsdp false

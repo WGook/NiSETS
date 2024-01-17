@@ -9,7 +9,6 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset
 import torch
 import random
-import h5py
 
 def load_filepaths_and_text(filename, split="|"):
     with open(filename, encoding='utf-8') as f:
