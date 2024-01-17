@@ -15,10 +15,19 @@ Demo page: Will be updated soon
 
 ## Usage
 ### 1. Installation
-Python==3.9.12
-
+* Install all Python package requirements (**Python==3.9.12)
 <pre>
 <code>
 pip install -r requirements.txt
 </code>
 </pre>
+
+* Build monotonic alignment
+<pre>
+<code>
+cd model/monotonic_align; python setup.py build_ext --inplace; cd ../..
+</code>
+</pre>
+
+### 2. Training
+1. Modify configuiration in `config.yaml`

@@ -27,7 +27,7 @@ e2etts = E2ETTS(**conf['e2etts']).to(device)
 e2etts.load_state_dict(torch.load('checkpoint/off_169435906/e2etts_420000.ckpt', map_location= device))
 
 e2etts.eval()
-dset = LJSpeech(valid = False, metafile = 'test_.csv')
+dset = LJSpeech(segment_size=0, valid = False, metafile = conf['dataset']['metafile_valid'])
 vl = DataLoader(
                 dset,
                 batch_size=1,
