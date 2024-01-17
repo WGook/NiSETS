@@ -32,15 +32,18 @@ cd model/monotonic_align; python setup.py build_ext --inplace; cd ../..
 
 ### 2. Training
 1. Modify configuiration in `config.yaml`
-    Ex.
+    > Ex.
+
     `system.validation_step`: step interval of save model ckpt & spectrograms
     `system.save_ckpt`: step interval of save whole project (requires for resuming training)
 
-    If you use `wandb`...
+    > If you use `wandb`...
+
     `log.project`: Prjoect name
     `log.name`: Log name
 
-    Dataset path
+    > Dataset path
+
     `dataset.prtpath`: Directory of LJSpeech dataset
     `dataset.metafile_train`: Directory of metadata for training (It's provided in `./data_util/train.txt`)
     `dataset.metafile_valid`: Directory of metadata for training (It's provided in `./data_util/valid.txt`)
