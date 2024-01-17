@@ -69,9 +69,10 @@ If `-test true`, then the folder name of the chekcpoints will be `off_XXXXXXXX`
 If you want to train using `amp`, set`-a true` in `run.sh`, but not recommended.
 
 
-* Resume from checkpoint
+* Resume from the checkpoint
 
 Add configurations, `-id folder_name -ckpt number` in `run.sh`.
+
 For example, `-id off_12345678 -ckpt 500000`
 
 
