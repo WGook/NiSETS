@@ -31,7 +31,7 @@ cd model/monotonic_align; python setup.py build_ext --inplace; cd ../..
 </pre>
 
 ### 2. Training
-1. Modify configuiration in `config.yaml`
+1) Modify configuiration in `config.yaml`
     > Ex.
 
     `system.validation_step`: step interval of save model ckpt & spectrograms
@@ -51,7 +51,7 @@ cd model/monotonic_align; python setup.py build_ext --inplace; cd ../..
 
     `dataset.metafile_valid`: Directory of metadata for training (It's provided in `./data_util/valid.txt`)
 
-2. Training
+2) Training
 * From scratch
 
 <pre>
@@ -76,7 +76,7 @@ Add configurations, `-id folder_name -ckpt number` in `run.sh`.
 For example, `-id off_12345678 -ckpt 500000`
 
 
-3. Inference
+### 3. Inference
 <pre>
 <code>
 python sampling.py
