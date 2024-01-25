@@ -11,7 +11,7 @@ In this study, we propose a method of joint training the score-based TTS model a
 As a result, the proposed method overcomes some digital artifacts of the synthesized audios compared to the non-iterative sampling of Grad-TTS.
 Also, the non-iterative sampling can generate speech faster than other end-to-end TTS models with fewer parameters.
 
-Demo page: Will be updated soon
+Demo page: https://wgook.github.io/NiSETS-demo/
 Multi-speaker: Will be updated soon
 
 ## Usage
